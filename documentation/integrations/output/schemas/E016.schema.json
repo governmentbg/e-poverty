@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:energy:messages:E016",
+  "title": "E016 – Потвърждение за удостоверен / прекратен статут",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "properties": {
+        "sender": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "description": "Тип изпращач на съобщението"
+        },
+        "senderISName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255,
+          "description": "Име и версия на информационната система, изпратила съобщението"
+        },
+        "recipient": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "description": "Тип на получател на съобщението"
+        },
+        "messageId": {
+          "type": "string",
+          "format": "uuid",
+          "minLength": 36,
+          "maxLength": 36,
+          "description": "Уникален идентификатор на текущото съобщение"
+        },
+        "messageType": {
+          "type": "string",
+          "const": "E016",
+          "description": "Тип на съобщението"
+        },
+        "createdOn": {
+          "type": "string",
+          "pattern": "^\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$",
+          "description": "Дата и час на изготвяне на съобщението по ISO 8601 в локално време с часова зона"
+        }
+      },
+      "required": [
+        "sender",
+        "senderISName",
+        "recipient",
+        "messageId",
+        "messageType",
+        "createdOn"
+      ],
+      "description": "Системна информация за съобщението"
+    },
+    "contents": {
+      "type": "object",
+      "properties": {
+        "certificateNumber": {
+          "type": "string",
+          "minLength": 16,
+          "maxLength": 16,
+          "description": "Номер на удостоверение"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2"
+          ],
+          "description": "Статут на клиент"
+        },
+        "resultCode": {
+          "type": "string",
+          "enum": [
+            "DF",
+            "NDF",
+            "SCNF"
+          ],
+          "description": "Код на резултата от проверката | Rules: RL004"
+        },
+        "resultDescription": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Допълнително пояснение към резултата от проверката"
+        }
+      },
+      "required": [
+        "certificateNumber",
+        "status",
+        "resultCode"
+      ],
+      "description": "Съдържание на съобщението"
+    }
+  },
+  "required": [
+    "header",
+    "contents"
+  ]
+}

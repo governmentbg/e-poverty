@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:energy:messages:E007",
+  "title": "E007 – Заявка за проверка на енергийни характеристики на жилище",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "properties": {
+        "sender": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "description": "Тип изпращач на съобщението"
+        },
+        "senderISName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255,
+          "description": "Име и версия на информационната система, изпратила съобщението"
+        },
+        "recipient": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "description": "Тип на получател на съобщението"
+        },
+        "messageId": {
+          "type": "string",
+          "format": "uuid",
+          "minLength": 36,
+          "maxLength": 36,
+          "description": "Уникален идентификатор на текущото съобщение"
+        },
+        "messageType": {
+          "type": "string",
+          "const": "E007",
+          "description": "Тип на съобщението"
+        },
+        "createdOn": {
+          "type": "string",
+          "pattern": "^\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$",
+          "description": "Дата и час на изготвяне на съобщението по ISO 8601 в локално време с часова зона"
+        }
+      },
+      "required": [
+        "sender",
+        "senderISName",
+        "recipient",
+        "messageId",
+        "messageType",
+        "createdOn"
+      ],
+      "description": "Системна информация за съобщението"
+    },
+    "contents": {
+      "type": "object",
+      "properties": {
+        "buildingType": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3"
+          ],
+          "description": "Тип на сградата"
+        },
+        "certificateNumber": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Номер на сертификат за енергийни характеристики"
+        },
+        "Address": {
+          "type": "object",
+          "properties": {
+            "country": {
+              "type": "string",
+              "description": "Държава"
+            },
+            "ekatte": {
+              "type": "string",
+              "minLength": 5,
+              "maxLength": 5,
+              "description": "Код по ЕКАТТЕ на населено място | Condition CDX02: IF 'currentAddress.country' = 'BG' THEN 'currentAddress.ekatte'.required = 'R' ELSE 'currentAddress.ekatte' IS null"
+            },
+            "localizationUnit": {
+              "type": "string",
+              "maxLength": 255,
+              "description": "Име на локализационна единица"
+            },
+            "number": {
+              "type": "string",
+              "maxLength": 5,
+              "description": "Номер на блок / локализационна единица"
+            },
+            "entrance": {
+              "type": "string",
+              "maxLength": 5,
+              "description": "Вход"
+            },
+            "floor": {
+              "type": "string",
+              "maxLength": 5,
+              "description": "Етаж"
+            },
+            "appartment": {
+              "type": "string",
+              "maxLength": 5,
+              "description": "Апартамент"
+            }
+          },
+          "required": [
+            "country"
+          ],
+          "if": {
+            "properties": {
+              "country": {
+                "const": "BG"
+              }
+            },
+            "required": [
+              "country"
+            ]
+          },
+          "then": {
+            "required": [
+              "ekatte"
+            ]
+          },
+          "else": {
+            "properties": {
+              "ekatte": false
+            }
+          },
+          "description": "Адрес"
+        }
+      },
+      "required": [
+        "buildingType",
+        "Address"
+      ],
+      "description": "Съдържание на съобщението"
+    }
+  },
+  "required": [
+    "header",
+    "contents"
+  ]
+}

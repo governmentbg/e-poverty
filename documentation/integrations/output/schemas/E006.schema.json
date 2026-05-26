@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:energy:messages:E006",
+  "title": "E006 – Резултат от проверка на домакинство",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "properties": {
+        "sender": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "description": "Тип изпращач на съобщението"
+        },
+        "senderISName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255,
+          "description": "Име и версия на информационната система, изпратила съобщението"
+        },
+        "recipient": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "description": "Тип на получател на съобщението"
+        },
+        "messageId": {
+          "type": "string",
+          "format": "uuid",
+          "minLength": 36,
+          "maxLength": 36,
+          "description": "Уникален идентификатор на текущото съобщение"
+        },
+        "messageType": {
+          "type": "string",
+          "const": "E006",
+          "description": "Тип на съобщението"
+        },
+        "createdOn": {
+          "type": "string",
+          "pattern": "^\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$",
+          "description": "Дата и час на изготвяне на съобщението по ISO 8601 в локално време с часова зона"
+        }
+      },
+      "required": [
+        "sender",
+        "senderISName",
+        "recipient",
+        "messageId",
+        "messageType",
+        "createdOn"
+      ],
+      "description": "Системна информация за съобщението"
+    },
+    "contents": {
+      "type": "object",
+      "properties": {
+        "householdMembers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "identifierType": {
+                "type": "string",
+                "enum": [
+                  "1",
+                  "2",
+                  "3"
+                ],
+                "description": "Вид идентификатор | Rules: RL002"
+              },
+              "identifier": {
+                "type": "string",
+                "description": "ЕГН | Rules: RL001"
+              },
+              "isDeceased": {
+                "type": "boolean",
+                "description": "Дали лицето е починало"
+              },
+              "currentAddress": {
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "type": "string",
+                    "description": "Държава по настоящ адрес"
+                  },
+                  "ekatte": {
+                    "type": "string",
+                    "minLength": 5,
+                    "maxLength": 5,
+                    "description": "Код по ЕКАТТЕ на населено място по настоящ адрес на лицето | Condition CDX02: IF 'currentAddress.country' = 'BG' THEN 'currentAddress.ekatte'.required = 'R' ELSE 'currentAddress.ekatte' IS null"
+                  },
+                  "localizationUnit": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "description": "Име на локализационна единица по настоящ адрес на лицето"
+                  },
+                  "number": {
+                    "type": "string",
+                    "maxLength": 5,
+                    "description": "Номер на блок / локализационна единица по настоящ адрес на лицето"
+                  },
+                  "entrance": {
+                    "type": "string",
+                    "maxLength": 5,
+                    "description": "Вход по настоящ адрес на лицето"
+                  },
+                  "floor": {
+                    "type": "string",
+                    "maxLength": 5,
+                    "description": "Етаж по настоящ адрес на лицето"
+                  },
+                  "appartment": {
+                    "type": "string",
+                    "maxLength": 5,
+                    "description": "Апартамент по настоящ адрес на лицето"
+                  }
+                },
+                "required": [
+                  "country"
+                ],
+                "if": {
+                  "properties": {
+                    "country": {
+                      "const": "BG"
+                    }
+                  },
+                  "required": [
+                    "country"
+                  ]
+                },
+                "then": {
+                  "required": [
+                    "ekatte"
+                  ]
+                },
+                "else": {
+                  "properties": {
+                    "ekatte": false
+                  }
+                },
+                "description": "Настоящ адрес на лицето"
+              }
+            },
+            "required": [
+              "identifierType",
+              "identifier",
+              "isDeceased",
+              "currentAddress"
+            ]
+          },
+          "minItems": 1,
+          "description": "Лица от домакинството"
+        }
+      },
+      "required": [
+        "householdMembers"
+      ],
+      "description": "Съдържание на съобщението"
+    }
+  },
+  "required": [
+    "header",
+    "contents"
+  ]
+}

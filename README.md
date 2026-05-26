@@ -1,93 +1,127 @@
 # МЕУ СИ Д-41-19-12-2025
 
+Проектът е насочен към разработване на Информационна система за домакинствата в положение на енергийна бедност и за уязвимите клиенти за снабдяване с електрическа енергия
 
+Разработката на системата е съгласно Решение  № 766 от   7 ноември   2025 година на Министерския съвет за създаване на механизъм за координация за управление и намаляване на енергийната бедност и за определяне на орган по чл. 38д, ал. 5 от Закона за енергетиката, който да разработи и поддържа информационна система за домакинствата в положение на енергийна бедност и за уязвимите клиенти за снабдяване с електрическа енергия
 
-## Getting started
+## Лиценз
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Всички документи, както и изходния код на системата са с лиценз [EUROPEAN UNION PUBLIC LICENCE v. 1.2](LICENSE)
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## Интеграции
 
-## Add your files
+Системата трябва да бъде интегрирана с множество институции и организации, като за целта са разработени следните спецификации:
 
-* [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+### Номенклатури
 
-```
-cd existing_repo
-git remote add origin https://git.egov.bg/meu/e-poverty/41-19-12-2025.git
-git branch -M main
-git push -uf origin main
-```
+За улеснение на процесите по автоматична интеграция на системите, където е възможно са използвани общоприети номенклатури като **ЕКАТТЕ** или международни стандарти като **ISO 3166-1 alpha-2 country code**, но има и необходимост от специфични номенклатури. Те могат да бъдат намерени в следния файл
 
-## Integrate with your tools
+[CodeableConcepts.xlsx](documentation/integrations/CodeableConcept.xlsx)
 
-* [Set up project integrations](https://git.egov.bg/meu/e-poverty/41-19-12-2025/-/settings/integrations)
+или да бъдат предледани [тук](documentation/integrations/CodeableConcept.md).
 
-## Collaborate with your team
+### Спецификации
 
-* [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+Спецификациите на предоставяните от системата услуги, за момента, са достъпни в два варианта (Excel и Markdown), като в най-скоро време ще бъде добавена и Open API спецификация.
 
-## Test and Deploy
+Съобщенията, обменяни между системите са описани в началото на спецификацията, веднага след бележките за промяна във версиите и са номерирани от E001 до E098. Всяко нечетно съобщение е заявка, а всяко четно е отговор. Ако операцията е асинхронна заявката няма съответно съобщение за отговор, а трябва да получи съобщение E096 (Успешно получаване на заявка) или E098 (Грешка при обработка на заявка). Съобщение E098 може да бъде върнато, като отговор на всяка една заявка. При синхронна операция, номерата на заявката и отговора са поредни (E015 - E016). Всяко поле може да зависи от Правило (RL001) или Условие (CDX001). Правилата и условията са описани в края на спецификацията. Ако полето съдържа номенклатурна стойност, то номенклатурата от допустими стойности е маркирана (CL001). Всички номенклатури са представени във файла по-горе.
 
-Use the built-in continuous integration in GitLab.
+За да се запознаете със спецификациите, трябва да свалите файла
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+[DataExchangeSpecification_v1.xlsx](documentation/integrations/DataExchangeSpecification_v1.xlsx)
 
-***
+или да ги прегледате [тук](documentation/integrations/DataExchangeSpecification_v1.md).
 
-# Editing this README
+### Схеми и примери
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+#### ИСДПЕБУКСЕЕ - НАП
 
-## Suggestions for a good README
+E001 - Заявка за извършване на проверка на доход на домакинство (отговор E096 или E098)
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+- [схема -> E001.schema.json](documentation/integrations/output/schemas/E001.schema.json)
+- [пример -> E001.example.json](documentation/integrations/output/examples/E001.example.json)
 
-## Name
-Choose a self-explaining name for your project.
+E003 - Резултат от проверка на доход на домакинство (отговор E096 или E098)
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+- [схема -> E003.schema.json](documentation/integrations/output/schemas/E003.schema.json)
+- [пример -> E003.example.json](documentation/integrations/output/examples/E003.example.json)
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+#### ИСДПЕБУКСЕЕ - ГРАО, МВР
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+E005 - Заявка за проверка на домакинство
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+- [схема -> E005.schema.json](documentation/integrations/output/schemas/E005.schema.json)
+- [пример -> E005.example.json](documentation/integrations/output/examples/E005.example.json)
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+E006 - Резултат от проверка на домакинство
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+- [схема -> E006.schema.json](documentation/integrations/output/schemas/E006.schema.json)
+- [пример -> E006.example.json](documentation/integrations/output/examples/E006.example.json)
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+#### ИСДПЕБУКСЕЕ - АУЕР
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+E007 - Заявка за проверка на енергийни характеристики на жилище
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+- [схема -> E007.schema.json](documentation/integrations/output/schemas/E007.schema.json)
+- [пример -> E007.example.json](documentation/integrations/output/examples/E007.example.json)
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+E008 - Резултат от проверка на енергийни характеристики на жилище
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+- [схема -> E008.schema.json](documentation/integrations/output/schemas/E008.schema.json)
+- [пример -> E008.example.json](documentation/integrations/output/examples/E008.example.json)
 
-## License
-For open source projects, say how it is licensed.
+#### ИСДПЕБУКСЕЕ - НЗОК
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+E009 - Заявка за проверка за отпуснато помощно средство/медицинско изделие от НЗОК
+
+- [схема -> E009.schema.json](documentation/integrations/output/schemas/E009.schema.json)
+- [пример -> E009.example.json](documentation/integrations/output/examples/E009.example.json)
+
+E010 - Резултат от проверка за отпуснато помощно средство/медицинско изделие от НЗОК
+
+- [схема -> E010.schema.json](documentation/integrations/output/schemas/E010.schema.json)
+- [пример -> E010.example.json](documentation/integrations/output/examples/E010.example.json)
+
+#### ИСДПЕБУКСЕЕ - ОЕМ
+
+E011 - Заявка за проверка на титуляр на партида (отговор E096 или E098)
+
+- [схема -> E011.schema.json](documentation/integrations/output/schemas/E011.schema.json)
+- [пример -> E011.example.json](documentation/integrations/output/examples/E011.example.json)
+
+E013 - Резултат от заявка за проверка на титуляр на партида (отговор E096 или E098)
+
+- [схема -> E013.schema.json](documentation/integrations/output/schemas/E013.schema.json)
+- [пример -> E013.example.json](documentation/integrations/output/examples/E013.example.json)
+
+E015 - Заявка за удостоверяване / прекратяване на статут
+
+- [схема -> E015.schema.json](documentation/integrations/output/schemas/E015.schema.json)
+- [пример -> E015.example.json](documentation/integrations/output/examples/E015.example.json)
+
+E016 - Потвърждение за удостоверен / прекратен статут
+
+- [схема -> E016.schema.json](documentation/integrations/output/schemas/E016.schema.json)
+- [пример -> E016.example.json](documentation/integrations/output/examples/E016.example.json)
+
+E017 - Заявка за промяна на титуляр
+
+- [схема -> E017.schema.json](documentation/integrations/output/schemas/E017.schema.json)
+- [пример -> E017.example.json](documentation/integrations/output/examples/E017.example.json)
+
+E018 - Потвърждение за промяна на титуляр
+
+- [схема -> E018.schema.json](documentation/integrations/output/schemas/E018.schema.json)
+- [пример -> E018.example.json](documentation/integrations/output/examples/E018.example.json)
+
+#### Общи съобщения
+
+E096 - Успешно получаване на заявка (използва се за потвърждение на получаване на заявка при асинхронен процес)
+
+- [схема -> E096.schema.json](documentation/integrations/output/schemas/E096.schema.json)
+- [пример -> E096.example.json](documentation/integrations/output/examples/E096.example.json)
+
+E098 - Грешка при обработка на заявка
+
+- [схема -> E098.schema.json](documentation/integrations/output/schemas/E098.schema.json)
+- [пример -> E098.example.json](documentation/integrations/output/examples/E098.example.json)

@@ -1,0 +1,23 @@
+{
+  "header": {
+    "sender": "1",
+    "senderISName": "ExampleIS v1.0",
+    "recipient": "1",
+    "messageId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "messageType": "E007",
+    "createdOn": "24-05-2024 12:00:00+02:00"
+  },
+  "contents": {
+    "buildingType": "1",
+    "certificateNumber": "CERT-2024-001",
+    "Address": {
+      "country": "BG",
+      "ekatte": "68134",
+      "localizationUnit": "ул. Витоша",
+      "number": "1",
+      "entrance": "А",
+      "floor": "5",
+      "appartment": "12"
+    }
+  }
+}

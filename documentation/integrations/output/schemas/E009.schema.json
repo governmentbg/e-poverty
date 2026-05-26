@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:energy:messages:E009",
+  "title": "E009 – Заявка за проверка за отпуснато помощно средство/медицинско изделие от НЗОК",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "properties": {
+        "sender": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "description": "Тип изпращач на съобщението"
+        },
+        "senderISName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255,
+          "description": "Име и версия на информационната система, изпратила съобщението"
+        },
+        "recipient": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "description": "Тип на получател на съобщението"
+        },
+        "messageId": {
+          "type": "string",
+          "format": "uuid",
+          "minLength": 36,
+          "maxLength": 36,
+          "description": "Уникален идентификатор на съобщението - трябва да бъде ново UUID генерирано към момента на изпращане на съобщението"
+        },
+        "messageType": {
+          "type": "string",
+          "const": "E009",
+          "description": "Тип на съобщението"
+        },
+        "createdOn": {
+          "type": "string",
+          "pattern": "^\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$",
+          "description": "Дата и час на изготвяне на съобщението по ISO 8601 в локално време с часова зона"
+        }
+      },
+      "required": [
+        "sender",
+        "senderISName",
+        "recipient",
+        "messageId",
+        "messageType",
+        "createdOn"
+      ],
+      "description": "Системна информация за съобщението"
+    },
+    "contents": {
+      "type": "object",
+      "properties": {
+        "identifierType": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3"
+          ],
+          "description": "Вид идентификатор"
+        },
+        "identifier": {
+          "type": "string",
+          "description": "ЕГН/ЛНЧ/ЛН | Rules: RL001"
+        },
+        "aids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "010201",
+              "010202",
+              "010203",
+              "020106",
+              "110301",
+              "110302",
+              "130103"
+            ]
+          },
+          "minItems": 1,
+          "description": "Помощни средства"
+        },
+        "medicalDevices": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "N18200020000001",
+              "B13130010000003",
+              "N18200020000005",
+              "N18200020000006",
+              "N18200020000007",
+              "N18300020000001",
+              "N18300020000005",
+              "N18300020000006",
+              "N18300020000007",
+              "N18300030000001"
+            ]
+          },
+          "minItems": 1,
+          "description": "Медицински изделия | Condition CDX04: IF 'aids' = IS null THEN 'medicalDevices'.required = 'R' ELSE 'medicalDevices'.required = 'O'"
+        }
+      },
+      "required": [
+        "identifierType",
+        "identifier"
+      ],
+      "description": "Съдържание на съобщението"
+    }
+  },
+  "required": [
+    "header",
+    "contents"
+  ]
+}

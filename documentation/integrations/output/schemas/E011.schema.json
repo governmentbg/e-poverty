@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:energy:messages:E011",
+  "title": "E011 – Заявка за проверка на титуляр на партида (отговор E096 или E098)",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "properties": {
+        "sender": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "description": "Тип изпращач на съобщението"
+        },
+        "senderISName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255,
+          "description": "Име и версия на информационната система, изпратила съобщението"
+        },
+        "recipient": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "description": "Тип на получател на съобщението"
+        },
+        "messageId": {
+          "type": "string",
+          "format": "uuid",
+          "minLength": 36,
+          "maxLength": 36,
+          "description": "Уникален идентификатор на съобщението - трябва да бъде ново UUID генерирано към момента на изпращане на съобщението"
+        },
+        "messageType": {
+          "type": "string",
+          "const": "E011",
+          "description": "Тип на съобщението"
+        },
+        "createdOn": {
+          "type": "string",
+          "pattern": "^\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$",
+          "description": "Дата и час на изготвяне на съобщението по ISO 8601 в локално време с часова зона"
+        }
+      },
+      "required": [
+        "sender",
+        "senderISName",
+        "recipient",
+        "messageId",
+        "messageType",
+        "createdOn"
+      ],
+      "description": "Системна информация за съобщението"
+    },
+    "contents": {
+      "type": "object",
+      "properties": {
+        "Address": {
+          "type": "object",
+          "properties": {
+            "country": {
+              "type": "string",
+              "description": "Държава"
+            },
+            "ekatte": {
+              "type": "string",
+              "minLength": 5,
+              "maxLength": 5,
+              "description": "Код по ЕКАТТЕ на населено място | Condition CDX02: IF 'currentAddress.country' = 'BG' THEN 'currentAddress.ekatte'.required = 'R' ELSE 'currentAddress.ekatte' IS null"
+            },
+            "localizationUnit": {
+              "type": "string",
+              "maxLength": 255,
+              "description": "Име на локализационна единица"
+            },
+            "number": {
+              "type": "string",
+              "maxLength": 5,
+              "description": "Номер на блок / локализационна единица"
+            },
+            "entrance": {
+              "type": "string",
+              "maxLength": 5,
+              "description": "Вход"
+            },
+            "floor": {
+              "type": "string",
+              "maxLength": 5,
+              "description": "Етаж"
+            },
+            "appartment": {
+              "type": "string",
+              "maxLength": 5,
+              "description": "Апартамент"
+            }
+          },
+          "required": [
+            "country"
+          ],
+          "if": {
+            "properties": {
+              "country": {
+                "const": "BG"
+              }
+            },
+            "required": [
+              "country"
+            ]
+          },
+          "then": {
+            "required": [
+              "ekatte"
+            ]
+          },
+          "else": {
+            "properties": {
+              "ekatte": false
+            }
+          },
+          "description": "Адрес"
+        },
+        "owner": {
+          "type": "object",
+          "properties": {
+            "identifierType": {
+              "type": "string",
+              "enum": [
+                "1",
+                "2",
+                "3"
+              ],
+              "description": "Вид идентификатор"
+            },
+            "identifier": {
+              "type": "string",
+              "description": "ЕГН/ЛНЧ/ЛН | Rules: RL001"
+            },
+            "firstName": {
+              "type": "string",
+              "maxLength": 50,
+              "description": "Собствено име"
+            },
+            "middleName": {
+              "type": "string",
+              "maxLength": 50,
+              "description": "Бащино име"
+            },
+            "lastName": {
+              "type": "string",
+              "maxLength": 50,
+              "description": "Фамилия"
+            }
+          },
+          "required": [
+            "identifierType",
+            "identifier",
+            "firstName",
+            "lastName"
+          ],
+          "description": "Титуляр на партида"
+        },
+        "measurementPoint": {
+          "type": "object",
+          "properties": {
+            "measurementPointNumber": {
+              "type": "string",
+              "maxLength": 50,
+              "description": "Номер на измервателна точка"
+            },
+            "clientNumber": {
+              "type": "string",
+              "maxLength": 50,
+              "description": "Клиентски номер"
+            },
+            "subscriberNumber": {
+              "type": "string",
+              "maxLength": 50,
+              "description": "Абонатен номер"
+            }
+          },
+          "anyOf": [
+            {
+              "required": [
+                "clientNumber"
+              ]
+            },
+            {
+              "required": [
+                "measurementPointNumber"
+              ]
+            },
+            {
+              "required": [
+                "subscriberNumber"
+              ]
+            }
+          ],
+          "description": "Данни за измервателна точка"
+        }
+      },
+      "required": [
+        "Address",
+        "owner",
+        "measurementPoint"
+      ],
+      "description": "Съдържание на съобщението"
+    }
+  },
+  "required": [
+    "header",
+    "contents"
+  ]
+}

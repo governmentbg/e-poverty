@@ -1,0 +1,20 @@
+{
+  "header": {
+    "sender": "1",
+    "senderISName": "ExampleIS v1.0",
+    "recipient": "1",
+    "messageId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "messageType": "E009",
+    "createdOn": "24-05-2024 12:00:00+02:00"
+  },
+  "contents": {
+    "identifierType": "1",
+    "identifier": "8501010101",
+    "aids": [
+      "010201"
+    ],
+    "medicalDevices": [
+      "N18200020000001"
+    ]
+  }
+}

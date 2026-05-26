@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:energy:messages:E098",
+  "title": "E098 – Грешка при обработка на заявка",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "properties": {
+        "sender": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "description": "Тип изпращач на съобщението"
+        },
+        "senderISName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255,
+          "description": "Име и версия на информационната система, изпратила съобщението"
+        },
+        "recipient": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "description": "Тип на получател на съобщението"
+        },
+        "messageId": {
+          "type": "string",
+          "format": "uuid",
+          "minLength": 36,
+          "maxLength": 36,
+          "description": "Уникален идентификатор на текущото съобщение"
+        },
+        "messageType": {
+          "type": "string",
+          "const": "E098",
+          "description": "Тип на съобщението"
+        },
+        "createdOn": {
+          "type": "string",
+          "pattern": "^\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$",
+          "description": "Дата и час на изготвяне на съобщението по ISO 8601 в локално време с часова зона"
+        }
+      },
+      "required": [
+        "sender",
+        "senderISName",
+        "recipient",
+        "messageId",
+        "messageType",
+        "createdOn"
+      ],
+      "description": "Системна информация за съобщението"
+    },
+    "contents": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "E001",
+                  "E002",
+                  "Е003"
+                ],
+                "description": "Специфичен код на грешката"
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255,
+                "description": "Текст, описващ причината за възникване на грешката"
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 2000,
+                "description": "Допълнителна информация за грешката, ако има такава необходимост"
+              },
+              "faultyAttribute": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255,
+                "description": "Системно име на сгрешения параметър, ако това е типа на грешката | Condition CDX01: IF 'error.type' = 'E002' THEN 'error.faultyAttribute'.required = 'R' ELSE 'error.faultyAttribute' IS null"
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "if": {
+              "properties": {
+                "type": {
+                  "properties": {
+                    "code": {
+                      "const": "E002"
+                    }
+                  }
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "faultyAttribute"
+              ]
+            },
+            "else": {
+              "properties": {
+                "faultyAttribute": false
+              }
+            }
+          },
+          "minItems": 1,
+          "description": "Специфични данни за грешките"
+        }
+      },
+      "required": [
+        "errors"
+      ],
+      "description": "Съдържание на съобщението"
+    }
+  },
+  "required": [
+    "header",
+    "contents"
+  ]
+}
