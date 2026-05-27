@@ -1,0 +1,292 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:energy:messages:E013",
+  "title": "E013 – Резултат от заявка за проверка на титуляр на партида (отговор E096 или E098)",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "properties": {
+        "sender": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "description": "Тип изпращач на съобщението"
+        },
+        "senderISName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255,
+          "description": "Име и версия на информационната система, изпратила съобщението"
+        },
+        "recipient": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "description": "Тип на получател на съобщението"
+        },
+        "messageId": {
+          "type": "string",
+          "format": "uuid",
+          "minLength": 36,
+          "maxLength": 36,
+          "description": "Уникален идентификатор на съобщението - трябва да бъде ново UUID генерирано към момента на изпращане на съобщението"
+        },
+        "messageType": {
+          "type": "string",
+          "const": "E013",
+          "description": "Тип на съобщението"
+        },
+        "createdOn": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$",
+          "description": "Дата и час на изготвяне на съобщението по ISO 8601 в локално време с часова зона"
+        }
+      },
+      "required": [
+        "sender",
+        "senderISName",
+        "recipient",
+        "messageId",
+        "messageType",
+        "createdOn"
+      ],
+      "description": "Системна информация за съобщението"
+    },
+    "contents": {
+      "type": "object",
+      "properties": {
+        "operationId": {
+          "type": "string",
+          "format": "uuid",
+          "minLength": 36,
+          "maxLength": 36,
+          "description": "Идентификатор на операция"
+        },
+        "resultCode": {
+          "type": "string",
+          "enum": [
+            "DF",
+            "NDF",
+            "SCNF"
+          ],
+          "description": "Код на резултата от проверката | Rules: RL004"
+        },
+        "resultDescription": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Допълнително пояснение към резултата от проверката"
+        },
+        "Address": {
+          "type": "object",
+          "properties": {
+            "country": {
+              "type": "string",
+              "description": "Държава"
+            },
+            "ekatte": {
+              "type": "string",
+              "minLength": 5,
+              "maxLength": 5,
+              "description": "Код по ЕКАТТЕ на населено място | Condition CDX02: IF 'currentAddress.country' = 'BG' THEN 'currentAddress.ekatte'.required = 'R' ELSE 'currentAddress.ekatte' IS null"
+            },
+            "localizationUnit": {
+              "type": "string",
+              "maxLength": 255,
+              "description": "Име на локализационна единица"
+            },
+            "number": {
+              "type": "string",
+              "maxLength": 5,
+              "description": "Номер на блок / локализационна единица"
+            },
+            "entrance": {
+              "type": "string",
+              "maxLength": 5,
+              "description": "Вход"
+            },
+            "floor": {
+              "type": "string",
+              "maxLength": 5,
+              "description": "Етаж"
+            },
+            "appartment": {
+              "type": "string",
+              "maxLength": 5,
+              "description": "Апартамент"
+            }
+          },
+          "required": [
+            "country"
+          ],
+          "if": {
+            "properties": {
+              "country": {
+                "const": "BG"
+              }
+            },
+            "required": [
+              "country"
+            ]
+          },
+          "then": {
+            "required": [
+              "ekatte"
+            ]
+          },
+          "else": {
+            "properties": {
+              "ekatte": false
+            }
+          },
+          "description": "Адрес | Condition CDX08: IF 'resultCode' = DF THEN 'address'.required = 'R' AND 'owner'.required = 'R' AND 'measurementPoint'.required = 'R' ELSE 'address' IS null AND 'owner' IS null AND 'measurementPoint' IS null"
+        },
+        "owner": {
+          "type": "object",
+          "properties": {
+            "identifierType": {
+              "type": "string",
+              "enum": [
+                "1",
+                "2",
+                "3"
+              ],
+              "description": "Вид идентификатор"
+            },
+            "identifier": {
+              "type": "string",
+              "description": "ЕГН/ЛНЧ/ЛН | Rules: RL001"
+            },
+            "firstName": {
+              "type": "string",
+              "maxLength": 50,
+              "description": "Собствено име"
+            },
+            "middleName": {
+              "type": "string",
+              "maxLength": 50,
+              "description": "Бащино име"
+            },
+            "lastName": {
+              "type": "string",
+              "maxLength": 50,
+              "description": "Фамилия"
+            }
+          },
+          "required": [
+            "identifierType",
+            "identifier",
+            "firstName",
+            "lastName"
+          ],
+          "description": "Титуляр на партида | Condition CDX08: IF 'resultCode' = DF THEN 'address'.required = 'R' AND 'owner'.required = 'R' AND 'measurementPoint'.required = 'R' ELSE 'address' IS null AND 'owner' IS null AND 'measurementPoint' IS null"
+        },
+        "measurementPoint": {
+          "type": "object",
+          "properties": {
+            "measurementPointNumber": {
+              "type": "string",
+              "maxLength": 50,
+              "description": "Номер на измервателна точка | Condition CDX09: measurementPointNumber' IS NOT null OR 'clientNumber' IS NOT null OR 'subscriberNumber' IS NOT null"
+            },
+            "clientNumber": {
+              "type": "string",
+              "maxLength": 50,
+              "description": "Клиентски номер | Condition CDX09: measurementPointNumber' IS NOT null OR 'clientNumber' IS NOT null OR 'subscriberNumber' IS NOT null"
+            },
+            "subscriberNumber": {
+              "type": "string",
+              "maxLength": 50,
+              "description": "Абонатен номер | Condition CDX09: measurementPointNumber' IS NOT null OR 'clientNumber' IS NOT null OR 'subscriberNumber' IS NOT null"
+            }
+          },
+          "anyOf": [
+            {
+              "required": [
+                "clientNumber"
+              ]
+            },
+            {
+              "required": [
+                "measurementPointNumber"
+              ]
+            },
+            {
+              "required": [
+                "subscriberNumber"
+              ]
+            }
+          ],
+          "description": "Данни за измервателна точка | Condition CDX08: IF 'resultCode' = DF THEN 'address'.required = 'R' AND 'owner'.required = 'R' AND 'measurementPoint'.required = 'R' ELSE 'address' IS null AND 'owner' IS null AND 'measurementPoint' IS null"
+        },
+        "gpsData": {
+          "type": "object",
+          "properties": {
+            "latitude": {
+              "type": "number",
+              "description": "Географска ширина"
+            },
+            "longitude": {
+              "type": "number",
+              "description": "Географска дължина"
+            }
+          },
+          "description": "Географски координати на електромера или обекта | Condition CDX08: IF 'resultCode' = DF THEN 'address'.required = 'R' AND 'owner'.required = 'R' AND 'measurementPoint'.required = 'R' ELSE 'address' IS null AND 'owner' IS null AND 'measurementPoint' IS null"
+        }
+      },
+      "required": [
+        "operationId",
+        "resultCode"
+      ],
+      "if": {
+        "properties": {
+          "resultCode": {
+            "properties": {
+              "code": {
+                "const": "DF"
+              }
+            }
+          }
+        },
+        "required": [
+          "resultCode"
+        ]
+      },
+      "then": {
+        "required": [
+          "Address",
+          "owner",
+          "measurementPoint"
+        ]
+      },
+      "else": {
+        "properties": {
+          "Address": false,
+          "owner": false,
+          "measurementPoint": false
+        }
+      },
+      "description": "Съдържание на съобщението"
+    }
+  },
+  "required": [
+    "header",
+    "contents"
+  ]
+}

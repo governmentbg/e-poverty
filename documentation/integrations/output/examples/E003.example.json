@@ -1,0 +1,15 @@
+{
+  "header": {
+    "sender": "1",
+    "senderISName": "ExampleIS v1.0",
+    "recipient": "1",
+    "messageId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "messageType": "E003",
+    "createdOn": "2024-05-24 12:00:00+02:00"
+  },
+  "contents": {
+    "operationId": "f0e1d2c3-b4a5-6789-cdef-012345678901",
+    "resultCode": "BPL",
+    "resultDescription": "Допълнително описание на резултата"
+  }
+}

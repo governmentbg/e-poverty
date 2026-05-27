@@ -1,0 +1,40 @@
+{
+  "header": {
+    "sender": "1",
+    "senderISName": "ExampleIS v1.0",
+    "recipient": "1",
+    "messageId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "messageType": "E013",
+    "createdOn": "2024-05-24 12:00:00+02:00"
+  },
+  "contents": {
+    "operationId": "f0e1d2c3-b4a5-6789-cdef-012345678901",
+    "resultCode": "DF",
+    "resultDescription": "Допълнително описание на резултата",
+    "Address": {
+      "country": "BG",
+      "ekatte": "68134",
+      "localizationUnit": "ул. Витоша",
+      "number": "1",
+      "entrance": "А",
+      "floor": "5",
+      "appartment": "12"
+    },
+    "owner": {
+      "identifierType": "1",
+      "identifier": "8501010101",
+      "firstName": "Иван",
+      "middleName": "example-value",
+      "lastName": "Иванов"
+    },
+    "measurementPoint": {
+      "measurementPointNumber": "MPN-001",
+      "clientNumber": "CLN-001",
+      "subscriberNumber": "SUB-001"
+    },
+    "gpsData": {
+      "latitude": 42.69751,
+      "longitude": 23.32415
+    }
+  }
+}

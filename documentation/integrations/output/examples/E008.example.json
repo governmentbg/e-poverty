@@ -1,0 +1,14 @@
+{
+  "header": {
+    "sender": "1",
+    "senderISName": "ExampleIS v1.0",
+    "recipient": "1",
+    "messageId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "messageType": "E008",
+    "createdOn": "2024-05-24 12:00:00+02:00"
+  },
+  "contents": {
+    "valueCalculated": true,
+    "value": 45.5
+  }
+}

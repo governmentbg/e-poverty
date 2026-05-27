@@ -1,18 +1,8 @@
-# МЕУ СИ Д-41-19-12-2025
-
-Проектът е насочен към разработване на Информационна система за домакинствата в положение на енергийна бедност и за уязвимите клиенти за снабдяване с електрическа енергия
-
-Разработката на системата е съгласно Решение  № 766 от   7 ноември   2025 година на Министерския съвет за създаване на механизъм за координация за управление и намаляване на енергийната бедност и за определяне на орган по чл. 38д, ал. 5 от Закона за енергетиката, който да разработи и поддържа информационна система за домакинствата в положение на енергийна бедност и за уязвимите клиенти за снабдяване с електрическа енергия
-
-## Лиценз
-
-Всички документи, както и изходния код на системата са с лиценз [EUROPEAN UNION PUBLIC LICENCE v. 1.2](LICENSE)
-
-## Интеграции
+# Интеграции
 
 Системата трябва да бъде интегрирана с множество институции и организации, като за целта са разработени следните спецификации:
 
-### Автентикация
+## Автентикация
 
 Всяка система, която се интегрира с ИСДПЕБУКСЕЕ, трябва предварително да бъде регистрирана и да и бъдат предоставени **Идентификатор на система** и **Секретен ключ**. За идентификация ще се използва схема **Bearer Token**, като токена ще бъде подаван в **Autorization** хедър. За всяка заявка токъна трябва да бъде генериран по следния алгоритъм:
 
@@ -27,15 +17,15 @@ Authorization: Bearer 58a310fe571648719d8cbaec149bb03f.e34f359367d2e1bf8404444d1
 
 ```
 
-### Номенклатури
+## Номенклатури
 
 За улеснение на процесите по автоматична интеграция на системите, където е възможно са използвани общоприети номенклатури като **ЕКАТТЕ** или международни стандарти като **ISO 3166-1 alpha-2 country code**, но има и необходимост от специфични номенклатури. Те могат да бъдат намерени в следния файл
 
-[CodeableConcepts.xlsx](documentation/integrations/CodeableConcept.xlsx)
+[CodeableConcepts.xlsx](CodeableConcept.xlsx)
 
-или да бъдат предледани [тук](documentation/integrations/CodeableConcept.md).
+или да бъдат предледани [тук](CodeableConcept.md).
 
-### Спецификации
+## Спецификации
 
 Спецификациите на предоставяните от системата услуги, за момента, са достъпни в два варианта (Excel и Markdown), като в най-скоро време ще бъде добавена и Open API спецификация.
 
@@ -43,100 +33,100 @@ Authorization: Bearer 58a310fe571648719d8cbaec149bb03f.e34f359367d2e1bf8404444d1
 
 За да се запознаете със спецификациите, трябва да свалите файла
 
-[DataExchangeSpecification_v1.xlsx](documentation/integrations/DataExchangeSpecification_v1.xlsx)
+[DataExchangeSpecification_v1.xlsx](DataExchangeSpecification_v1.xlsx)
 
-или да ги прегледате [тук](documentation/integrations/DataExchangeSpecification_v1.md).
+или да ги прегледате [тук](DataExchangeSpecification_v1.md).
 
-### Схеми и примери
+## Схеми и примери
 
-#### ИСДПЕБУКСЕЕ - НАП
+### ИСДПЕБУКСЕЕ - НАП
 
 E001 - Заявка за извършване на проверка на доход на домакинство (отговор E096 или E098)
 
-- [схема -> E001.schema.json](documentation/integrations/output/schemas/E001.schema.json)
-- [пример -> E001.example.json](documentation/integrations/output/examples/E001.example.json)
+- [схема -> E001.schema.json](output/schemas/E001.schema.json)
+- [пример -> E001.example.json](output/examples/E001.example.json)
 
 E003 - Резултат от проверка на доход на домакинство (отговор E096 или E098)
 
-- [схема -> E003.schema.json](documentation/integrations/output/schemas/E003.schema.json)
-- [пример -> E003.example.json](documentation/integrations/output/examples/E003.example.json)
+- [схема -> E003.schema.json](output/schemas/E003.schema.json)
+- [пример -> E003.example.json](output/examples/E003.example.json)
 
-#### ИСДПЕБУКСЕЕ - ГРАО, МВР
+### ИСДПЕБУКСЕЕ - ГРАО, МВР
 
 E005 - Заявка за проверка на домакинство
 
-- [схема -> E005.schema.json](documentation/integrations/output/schemas/E005.schema.json)
-- [пример -> E005.example.json](documentation/integrations/output/examples/E005.example.json)
+- [схема -> E005.schema.json](output/schemas/E005.schema.json)
+- [пример -> E005.example.json](output/examples/E005.example.json)
 
 E006 - Резултат от проверка на домакинство
 
-- [схема -> E006.schema.json](documentation/integrations/output/schemas/E006.schema.json)
-- [пример -> E006.example.json](documentation/integrations/output/examples/E006.example.json)
+- [схема -> E006.schema.json](output/schemas/E006.schema.json)
+- [пример -> E006.example.json](output/examples/E006.example.json)
 
-#### ИСДПЕБУКСЕЕ - АУЕР
+### ИСДПЕБУКСЕЕ - АУЕР
 
 E007 - Заявка за проверка на енергийни характеристики на жилище
 
-- [схема -> E007.schema.json](documentation/integrations/output/schemas/E007.schema.json)
-- [пример -> E007.example.json](documentation/integrations/output/examples/E007.example.json)
+- [схема -> E007.schema.json](output/schemas/E007.schema.json)
+- [пример -> E007.example.json](output/examples/E007.example.json)
 
 E008 - Резултат от проверка на енергийни характеристики на жилище
 
-- [схема -> E008.schema.json](documentation/integrations/output/schemas/E008.schema.json)
-- [пример -> E008.example.json](documentation/integrations/output/examples/E008.example.json)
+- [схема -> E008.schema.json](output/schemas/E008.schema.json)
+- [пример -> E008.example.json](output/examples/E008.example.json)
 
-#### ИСДПЕБУКСЕЕ - НЗОК
+### ИСДПЕБУКСЕЕ - НЗОК
 
 E009 - Заявка за проверка за отпуснато помощно средство/медицинско изделие от НЗОК
 
-- [схема -> E009.schema.json](documentation/integrations/output/schemas/E009.schema.json)
-- [пример -> E009.example.json](documentation/integrations/output/examples/E009.example.json)
+- [схема -> E009.schema.json](output/schemas/E009.schema.json)
+- [пример -> E009.example.json](output/examples/E009.example.json)
 
 E010 - Резултат от проверка за отпуснато помощно средство/медицинско изделие от НЗОК
 
-- [схема -> E010.schema.json](documentation/integrations/output/schemas/E010.schema.json)
-- [пример -> E010.example.json](documentation/integrations/output/examples/E010.example.json)
+- [схема -> E010.schema.json](output/schemas/E010.schema.json)
+- [пример -> E010.example.json](output/examples/E010.example.json)
 
-#### ИСДПЕБУКСЕЕ - ОЕМ
+### ИСДПЕБУКСЕЕ - ОЕМ
 
 E011 - Заявка за проверка на титуляр на партида (отговор E096 или E098)
 
-- [схема -> E011.schema.json](documentation/integrations/output/schemas/E011.schema.json)
-- [пример -> E011.example.json](documentation/integrations/output/examples/E011.example.json)
+- [схема -> E011.schema.json](output/schemas/E011.schema.json)
+- [пример -> E011.example.json](output/examples/E011.example.json)
 
 E013 - Резултат от заявка за проверка на титуляр на партида (отговор E096 или E098)
 
-- [схема -> E013.schema.json](documentation/integrations/output/schemas/E013.schema.json)
-- [пример -> E013.example.json](documentation/integrations/output/examples/E013.example.json)
+- [схема -> E013.schema.json](output/schemas/E013.schema.json)
+- [пример -> E013.example.json](output/examples/E013.example.json)
 
 E015 - Заявка за удостоверяване / прекратяване на статут
 
-- [схема -> E015.schema.json](documentation/integrations/output/schemas/E015.schema.json)
-- [пример -> E015.example.json](documentation/integrations/output/examples/E015.example.json)
+- [схема -> E015.schema.json](output/schemas/E015.schema.json)
+- [пример -> E015.example.json](output/examples/E015.example.json)
 
 E016 - Потвърждение за удостоверен / прекратен статут
 
-- [схема -> E016.schema.json](documentation/integrations/output/schemas/E016.schema.json)
-- [пример -> E016.example.json](documentation/integrations/output/examples/E016.example.json)
+- [схема -> E016.schema.json](output/schemas/E016.schema.json)
+- [пример -> E016.example.json](output/examples/E016.example.json)
 
 E017 - Заявка за промяна на титуляр
 
-- [схема -> E017.schema.json](documentation/integrations/output/schemas/E017.schema.json)
+- [схема -> E017.schema.json](output/schemas/E017.schema.json)
 - [пример -> E017.example.json](documentation/integrations/output/examples/E017.example.json)
 
 E018 - Потвърждение за промяна на титуляр
 
-- [схема -> E018.schema.json](documentation/integrations/output/schemas/E018.schema.json)
-- [пример -> E018.example.json](documentation/integrations/output/examples/E018.example.json)
+- [схема -> E018.schema.json](output/schemas/E018.schema.json)
+- [пример -> E018.example.json](output/examples/E018.example.json)
 
-#### Общи съобщения
+### Общи съобщения
 
 E096 - Успешно получаване на заявка (използва се за потвърждение на получаване на заявка при асинхронен процес)
 
-- [схема -> E096.schema.json](documentation/integrations/output/schemas/E096.schema.json)
-- [пример -> E096.example.json](documentation/integrations/output/examples/E096.example.json)
+- [схема -> E096.schema.json](output/schemas/E096.schema.json)
+- [пример -> E096.example.json](output/examples/E096.example.json)
 
 E098 - Грешка при обработка на заявка
 
-- [схема -> E098.schema.json](documentation/integrations/output/schemas/E098.schema.json)
-- [пример -> E098.example.json](documentation/integrations/output/examples/E098.example.json)
+- [схема -> E098.schema.json](output/schemas/E098.schema.json)
+- [пример -> E098.example.json](output/examples/E098.example.json)
