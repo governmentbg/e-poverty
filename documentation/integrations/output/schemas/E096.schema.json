@@ -55,7 +55,7 @@
         },
         "createdOn": {
           "type": "string",
-          "pattern": "^\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$",
           "description": "Дата и час на изготвяне на съобщението по ISO 8601 в локално време с часова зона"
         }
       },
@@ -81,12 +81,12 @@
         },
         "startedOn": {
           "type": "string",
-          "pattern": "^\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$",
           "description": "Дата и час на започване на асинхронната операция по ISO 8601 в локално време с часова зона"
         },
         "completedOn": {
           "type": "string",
-          "pattern": "^\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$",
           "description": "Дата и час на приключване на асинхронната операция по ISO 8601 в локално време с часова зона | Condition CDX07: IF Asynchronous operation is completed THEN 'completedOn'.required = 'R' ELSE 'completedOn' IS null"
         }
       },
