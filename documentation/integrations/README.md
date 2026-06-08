@@ -45,7 +45,7 @@ Authorization: Bearer 58a310fe571648719d8cbaec149bb03f.e34f359367d2e1bf8404444d1
 
 [DataExchangeSpecification_v1.0.1.xlsx](DataExchangeSpecification_v1.0.1.xlsx)
 
-или да ги прегледате [тук](DataExchangeSpecification_v1.01.md).
+или да ги прегледате [тук](DataExchangeSpecification_v1.0.1.md).
 
 ## Схеми и примери
 
