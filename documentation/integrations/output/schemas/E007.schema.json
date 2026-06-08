@@ -83,77 +83,15 @@
         },
         "certificateNumber": {
           "type": "string",
-          "maxLength": 50,
-          "description": "Номер на сертификат за енергийни характеристики"
-        },
-        "Address": {
-          "type": "object",
-          "properties": {
-            "country": {
-              "type": "string",
-              "description": "Държава"
-            },
-            "ekatte": {
-              "type": "string",
-              "minLength": 5,
-              "maxLength": 5,
-              "description": "Код по ЕКАТТЕ на населено място | Condition CDX02: IF 'currentAddress.country' = 'BG' THEN 'currentAddress.ekatte'.required = 'R' ELSE 'currentAddress.ekatte' IS null"
-            },
-            "localizationUnit": {
-              "type": "string",
-              "maxLength": 255,
-              "description": "Име на локализационна единица"
-            },
-            "number": {
-              "type": "string",
-              "maxLength": 5,
-              "description": "Номер на блок / локализационна единица"
-            },
-            "entrance": {
-              "type": "string",
-              "maxLength": 5,
-              "description": "Вход"
-            },
-            "floor": {
-              "type": "string",
-              "maxLength": 5,
-              "description": "Етаж"
-            },
-            "appartment": {
-              "type": "string",
-              "maxLength": 5,
-              "description": "Апартамент"
-            }
-          },
-          "required": [
-            "country"
-          ],
-          "if": {
-            "properties": {
-              "country": {
-                "const": "BG"
-              }
-            },
-            "required": [
-              "country"
-            ]
-          },
-          "then": {
-            "required": [
-              "ekatte"
-            ]
-          },
-          "else": {
-            "properties": {
-              "ekatte": false
-            }
-          },
-          "description": "Адрес"
+          "minLength": 8,
+          "maxLength": 9,
+          "pattern": "^[0-9]{8,9}$",
+          "description": "Номер на сертификат за енергийни характеристики (с премахнати букви)"
         }
       },
       "required": [
         "buildingType",
-        "Address"
+        "certificateNumber"
       ],
       "description": "Съдържание на съобщението"
     }

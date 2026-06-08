@@ -14,7 +14,9 @@
 
 ### Автентикация
 
-Всяка система, която се интегрира с ИСДПЕБУКСЕЕ, трябва предварително да бъде регистрирана и да и бъдат предоставени **Идентификатор на система** и **Секретен ключ**. За идентификация ще се използва схема **Bearer Token**, като токена ще бъде подаван в **Autorization** хедър. За всяка заявка токъна трябва да бъде генериран по следния алгоритъм:
+Всяка система, която се интегрира с ИСДПЕБУКСЕЕ, трябва предварително да бъде регистрирана и да и бъдат предоставени **Идентификатор на система** и **Секретен ключ** или **Сертификат за достъп**. Предлагаме два варианта на идентификация:
+
+- **Bearer Token**, като токена ще бъде подаван в **Autorization** хедър. За всяка заявка токъна трябва да бъде генериран по следния алгоритъм:
 
 1. Изчислява се хеш по алгоритъм HMAC256 върху тялото на заявката, като ключ при изчислението на хеша се използва **Секретния ключ** на системата.
 2. Хеша се кодира като HEX string
@@ -26,6 +28,14 @@
 Authorization: Bearer 58a310fe571648719d8cbaec149bb03f.e34f359367d2e1bf8404444d114d074089c0f48e19096a971ea49b1a790a2d03
 
 ```
+
+- **Сертификат за достъп**
+
+1. За да получи сертификат за достъп, след регистрация на системата, съответната организация трябва да генерира двойка публичен и частен ключ, RSA минимум 2048 b, и заявка за издаване на сертификат в която да включи следните данни:
+
+- Common Name (**CN**) - Квалифицирано име на домейн (**FQDN**)
+- System Identifier (**SID**) - Идентификатор на системат
+- Organization (**O**) - Организация, от името на която се извършва комуникацията
 
 ### Номенклатури
 
@@ -43,23 +53,23 @@ Authorization: Bearer 58a310fe571648719d8cbaec149bb03f.e34f359367d2e1bf8404444d1
 
 За да се запознаете със спецификациите, трябва да свалите файла
 
-[DataExchangeSpecification_v1.xlsx](documentation/integrations/DataExchangeSpecification_v1.xlsx)
+[DataExchangeSpecification_v1.0.1.xlsx](documentation/integrations/DataExchangeSpecification_v1.0.1.xlsx.xlsx)
 
-или да ги прегледате [тук](documentation/integrations/DataExchangeSpecification_v1.md).
+или да ги прегледате [тук](documentation/integrations/DataExchangeSpecification_v1.0.1.md).
 
 ### Схеми и примери
 
 #### ИСДПЕБУКСЕЕ - НАП
 
-E001 - Заявка за извършване на проверка на доход на домакинство (отговор E096 или E098)
+E001 - Заявка за извършване на проверка на доход на домакинство
 
 - [схема -> E001.schema.json](documentation/integrations/output/schemas/E001.schema.json)
 - [пример -> E001.example.json](documentation/integrations/output/examples/E001.example.json)
 
-E003 - Резултат от проверка на доход на домакинство (отговор E096 или E098)
+E002 - Резултат от проверка на доход на домакинство
 
-- [схема -> E003.schema.json](documentation/integrations/output/schemas/E003.schema.json)
-- [пример -> E003.example.json](documentation/integrations/output/examples/E003.example.json)
+- [схема -> E002.schema.json](documentation/integrations/output/schemas/E002.schema.json)
+- [пример -> E002.example.json](documentation/integrations/output/examples/E002.example.json)
 
 #### ИСДПЕБУКСЕЕ - ГРАО, МВР
 
