@@ -53,23 +53,23 @@ Authorization: Bearer 58a310fe571648719d8cbaec149bb03f.e34f359367d2e1bf8404444d1
 
 За да се запознаете със спецификациите, трябва да свалите файла
 
-[DataExchangeSpecification_v1.xlsx](documentation/integrations/DataExchangeSpecification_v1.xlsx)
+[DataExchangeSpecification_v1.0.1.xlsx](documentation/integrations/DataExchangeSpecification_v1.0.1.xlsx.xlsx)
 
-или да ги прегледате [тук](documentation/integrations/DataExchangeSpecification_v1.md).
+или да ги прегледате [тук](documentation/integrations/DataExchangeSpecification_v1.0.1.md).
 
 ### Схеми и примери
 
 #### ИСДПЕБУКСЕЕ - НАП
 
-E001 - Заявка за извършване на проверка на доход на домакинство (отговор E096 или E098)
+E001 - Заявка за извършване на проверка на доход на домакинство
 
 - [схема -> E001.schema.json](documentation/integrations/output/schemas/E001.schema.json)
 - [пример -> E001.example.json](documentation/integrations/output/examples/E001.example.json)
 
-E003 - Резултат от проверка на доход на домакинство (отговор E096 или E098)
+E002 - Резултат от проверка на доход на домакинство
 
-- [схема -> E003.schema.json](documentation/integrations/output/schemas/E003.schema.json)
-- [пример -> E003.example.json](documentation/integrations/output/examples/E003.example.json)
+- [схема -> E002.schema.json](documentation/integrations/output/schemas/E002.schema.json)
+- [пример -> E002.example.json](documentation/integrations/output/examples/E002.example.json)
 
 #### ИСДПЕБУКСЕЕ - ГРАО, МВР
 
