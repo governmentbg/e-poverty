@@ -72,13 +72,6 @@
     "contents": {
       "type": "object",
       "properties": {
-        "operationId": {
-          "type": "string",
-          "format": "uuid",
-          "minLength": 36,
-          "maxLength": 36,
-          "description": "Идентификатор на операция"
-        },
         "resultCode": {
           "type": "string",
           "enum": [
@@ -94,7 +87,6 @@
         }
       },
       "required": [
-        "operationId",
         "resultCode"
       ],
       "description": "Съдържание на съобщението"
