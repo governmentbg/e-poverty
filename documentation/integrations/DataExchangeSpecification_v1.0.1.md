@@ -41,6 +41,8 @@
 
 - Съобщение Е003 става E002 (Комуникацията с НАП става синхронна)
 - Премахнат е operationId от съобщение E002
+- В съобщение E007 е премахнато полето address
+- В съобщение E007 е коригиран формата на полето certificateNumber
 
 ---
 
@@ -166,15 +168,7 @@
 | Preparation Timestamp          | R     | 1..1        | Date and Time    | YYYY-MM-DDhh:mm:ss[+\\|-]hh:mm  |             |       |            |            | createdOn         | Дата и час на изготвяне на съобщението по ISO 8601 в локално време с часова зона |
 | Contents                       | R     | 1..1        | ---              |                                 |             |       |            |            | contents          | Съдържание на съобщението                                                        |
 | Building Type               | R     | 1..1        | Codeable Concept |                                 |             |       |            | CL003      | buildingType      | Тип на сградата                                                                  |
-| Certificate Number          | O     | 1..1        | String           | min=0, max=50, chars=an         |             |       |            |            | certificateNumber | Номер на сертификат за енергийни характеристики                                  |
-| Address                        | R     | 1..1        |                  |                                 |             |       |            |            | Address           | Адрес                                                                            |
-| Country                        | R     | 1..1        | String           | ISO 3166-1 alpha-2 country code |             |       |            |            | country           | Държава                                                                          |
-| EKATTE                         | C     | 1..1        | String           | min=5, max=5, chars=n           |             |       | CDX02      |            | ekatte            | Код по ЕКАТТЕ на населено място                                                  |
-| Localization unit              | O     | 1..1        | String           | min=0, max=255, chars=an        |             |       |            |            | localizationUnit  | Име на локализационна единица                                                    |
-| Number                         | O     | 1..1        | String           | min=0, max=5, chars=an          |             |       |            |            | number            | Номер на блок / локализационна единица                                           |
-| Entrance                       | O     | 1..1        | String           | min=0, max=5, chars=an          |             |       |            |            | entrance          | Вход                                                                             |
-| Floor                          | O     | 1..1        | String           | min=0, max=5, chars=an          |             |       |            |            | floor             | Етаж                                                                             |
-| Appartment                     | O     | 1..1        | String           | min=0, max=5, chars=an          |             |       |            |            | appartment        | Апартамент                                                                       |
+| Certificate Number          | R     | 1..1        | String           | min=8, max=9, chars=n         |             |       |            |            | certificateNumber | Номер на сертификат за енергийни характеристики  (с премахнати букви)                                 |
 
 ---
 

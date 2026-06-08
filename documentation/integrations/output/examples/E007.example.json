@@ -9,15 +9,6 @@
   },
   "contents": {
     "buildingType": "1",
-    "certificateNumber": "CERT-2024-001",
-    "Address": {
-      "country": "BG",
-      "ekatte": "68134",
-      "localizationUnit": "ул. Витоша",
-      "number": "1",
-      "entrance": "А",
-      "floor": "5",
-      "appartment": "12"
-    }
+    "certificateNumber": "123456789"
   }
 }
