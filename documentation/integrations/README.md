@@ -33,23 +33,23 @@ Authorization: Bearer 58a310fe571648719d8cbaec149bb03f.e34f359367d2e1bf8404444d1
 
 За да се запознаете със спецификациите, трябва да свалите файла
 
-[DataExchangeSpecification_v1.xlsx](DataExchangeSpecification_v1.xlsx)
+[DataExchangeSpecification_v1.0.1.xlsx](DataExchangeSpecification_v1.0.1.xlsx)
 
-или да ги прегледате [тук](DataExchangeSpecification_v1.md).
+или да ги прегледате [тук](DataExchangeSpecification_v1.01.md).
 
 ## Схеми и примери
 
 ### ИСДПЕБУКСЕЕ - НАП
 
-E001 - Заявка за извършване на проверка на доход на домакинство (отговор E096 или E098)
+E001 - Заявка за извършване на проверка на доход на домакинство
 
 - [схема -> E001.schema.json](output/schemas/E001.schema.json)
 - [пример -> E001.example.json](output/examples/E001.example.json)
 
-E003 - Резултат от проверка на доход на домакинство (отговор E096 или E098)
+E002 - Резултат от проверка на доход на домакинство
 
-- [схема -> E003.schema.json](output/schemas/E003.schema.json)
-- [пример -> E003.example.json](output/examples/E003.example.json)
+- [схема -> E002.schema.json](output/schemas/E002.schema.json)
+- [пример -> E002.example.json](output/examples/E002.example.json)
 
 ### ИСДПЕБУКСЕЕ - ГРАО, МВР
 
