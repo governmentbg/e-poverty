@@ -43,9 +43,9 @@ Authorization: Bearer 58a310fe571648719d8cbaec149bb03f.e34f359367d2e1bf8404444d1
 
 За да се запознаете със спецификациите, трябва да свалите файла
 
-[DataExchangeSpecification_v1.0.1.xlsx](DataExchangeSpecification_v1.0.1.xlsx)
+[DataExchangeSpecification_v1.0.1.xlsx](DataExchangeSpecification_v1.0.2.xlsx)
 
-или да ги прегледате [тук](DataExchangeSpecification_v1.0.1.md).
+или да ги прегледате [тук](DataExchangeSpecification_v1.0.2.md).
 
 ## Схеми и примери
 
