@@ -45,6 +45,11 @@
 - В съобщение E007 е коригиран формата на полето certificateNumber
 - В съобщение E007 полето certificateNumber става задължително
 
+Версия 1.0.2
+
+- В съобщение E001 са е добавено поле Номер на заявление (applicationNumber)
+- В съобщение E001 са е добавено поле Дата на заявление (applicationDate)
+
 ---
 
 ## Съобщения
@@ -82,6 +87,8 @@
 | Type of message                | R     | 1..1        | String           | min=4, max=4, chars=an         |             |       |            |            | messageType      | Тип на съобщението                                                                                                  |
 | Preparation Timestamp          | R     | 1..1        | Date and Time    | YYYY-MM-DDhh:mm:ss[+\\|-]hh:mm |             |       |            |            | createdOn        | Дата и час на изготвяне на съобщението по ISO 8601 в локално време с часова зона                                    |
 | Contents                       | R     | 1..1        |                  |                                |             |       |            |            | contents         | Съдържание на съобщението                                                                                           |
+| Application number          | R     | 1..1        | String           | min=16, max=16, chars=n        |             |       |            |            | applicationNumber      | Номер на заявление                                                                                              |
+| Application date            | R     | 1..1        | Date             | YYYY-MM-DD                     |             |       |            |            | applicationDate        | Дата на заявление                                                                                               |
 | Household Members              | R     | 1..n        |                  |                                |             |       |            |            | householdMembers | Лица от домакинството                                                                                               |
 | Identifier Type                | R     | 1..1        | Codeable Concept |                                |             |       |            | CL002      | identifierType   | Вид идентификатор                                                                                                   |
 | Identifier                     | R     | 1..1        | String           |                                |             | RL001 |            |            | identifier       | ЕГН/ЛНЧ/ЛН                                                                                                          |

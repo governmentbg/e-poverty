@@ -8,6 +8,8 @@
     "createdOn": "2024-05-24 12:00:00+02:00"
   },
   "contents": {
+    "applicationNumber": "1234567890123456",
+    "applicationDate": "2024-05-24",
     "householdMembers": [
       {
         "identifierType": "1",
