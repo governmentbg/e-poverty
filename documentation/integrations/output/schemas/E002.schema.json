@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:energy:messages:E003",
-  "title": "E003 – Резултат от проверка на доход на домакинство (отговор E096 или E098)",
+  "$id": "urn:energy:messages:E002",
+  "title": "E002 – Резултат от проверка на доход на домакинство",
   "type": "object",
   "properties": {
     "header": {
@@ -50,7 +50,7 @@
         },
         "messageType": {
           "type": "string",
-          "const": "E003",
+          "const": "E002",
           "description": "Тип на съобщението"
         },
         "createdOn": {
